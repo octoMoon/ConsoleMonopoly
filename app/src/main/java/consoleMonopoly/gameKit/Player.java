@@ -5,11 +5,22 @@ public class Player {
     private String name;
     private int numberInLine;
     private int money = 14800000;
+    private int position;
     private boolean isAi;
     private boolean isBanker;
 
     public Player() {
     }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+    
+    
 
     public String getName() {
         return name;
