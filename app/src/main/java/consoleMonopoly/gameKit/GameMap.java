@@ -8,7 +8,7 @@ public class GameMap {
     private MapType type;
     private Collor collor;
     private int tax;
-    private boolean isBy;
+    private boolean isFree = true;
     private String name;
 
     public GameMap(MapType type) {
@@ -53,12 +53,12 @@ public class GameMap {
     }
 
 
-    public boolean isIsBy() {
-        return isBy;
+    public boolean isFree() {
+        return isFree;
     }
 
-    public void setIsBy(boolean isBy) {
-        this.isBy = isBy;
+    public void setIsFree(boolean isBy) {
+        this.isFree = isBy;
     }
 
     public String getName() {

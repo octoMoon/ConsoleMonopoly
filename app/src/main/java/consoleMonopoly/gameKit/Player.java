@@ -1,13 +1,15 @@
 package consoleMonopoly.gameKit;
 
+import java.util.ArrayList;
+
 public class Player {
 
     private String name;
-    private int numberInLine;
-    private int money = 14800000;
+    private int money = 150;
     private int position;
     private boolean isAi;
     private boolean isBanker;
+    private ArrayList<OwnerCard> ownerCards;
 
     public Player() {
     }
@@ -19,8 +21,15 @@ public class Player {
     public void setPosition(int position) {
         this.position = position;
     }
-    
-    
+
+    public ArrayList<OwnerCard> getOwnerCards() {
+        return ownerCards;
+    }
+
+    public void setOwnerCards(ArrayList<OwnerCard> ownerCards) {
+        this.ownerCards = ownerCards;
+    }
+        
 
     public String getName() {
         return name;
@@ -28,14 +37,6 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getNumberInLine() {
-        return numberInLine;
-    }
-
-    public void setNumberInLine(int numberInLine) {
-        this.numberInLine = numberInLine;
     }
 
     public int getMoney() {
