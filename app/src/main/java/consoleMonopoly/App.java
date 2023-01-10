@@ -18,6 +18,7 @@ public class App {
 
     public static void main(String[] args) {
         int numberOfPlayers;
+        int bankMoney;
         boolean isGameOver = false;
         Player[] players;
         ArrayList<GameMap> gameMap;
@@ -45,7 +46,6 @@ public class App {
             for (int i = 0; i < players.length; i++) {
                 playerMenu.menuView(players[i], scanner, dice, random, gameMap.get(2));
             }
-
         }
 
     }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Player {
 
     private String name;
-    private int money = 150;
+    private int money = 1500;
     private int position;
     private boolean isAi;
     private boolean isBanker;

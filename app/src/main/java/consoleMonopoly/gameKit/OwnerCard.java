@@ -1,6 +1,7 @@
 package consoleMonopoly.gameKit;
 
 import consoleMonopoly.enums.Collor;
+import java.util.Objects;
 
 public class OwnerCard {
 
@@ -119,7 +120,27 @@ public class OwnerCard {
         this.plege = plege;
     }
 
-    
-    
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.cardName);
+        return hash;
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final OwnerCard other = (OwnerCard) obj;
+        return Objects.equals(this.cardName, other.cardName);
+    }
+    
+    
 }

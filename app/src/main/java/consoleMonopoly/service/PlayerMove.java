@@ -4,16 +4,20 @@ import static consoleMonopoly.enums.MapType.*;
 import consoleMonopoly.exception.NotMoveException;
 import consoleMonopoly.gameKit.Dice;
 import consoleMonopoly.gameKit.GameMap;
+import consoleMonopoly.gameKit.OwnerCard;
 import consoleMonopoly.gameKit.Player;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class PlayerMove {
 
-    public void menuView(Player player, Scanner scanner, Dice dice, Random random, GameMap gameMap) {
+    public void menuView(Player player, Scanner scanner, Dice dice, Random random, GameMap gameMap, ArrayList<OwnerCard> ownerCards, int bankMoney) {
         int i = dice.d6throw(random);
         boolean isOwn = false;
-        int bank = 0;
+        
+        SearchCardService searchCardService = new SearchCardService();
+        
         String location = gameMap.getName();
         System.out.println("Активный игрок: " + player.getName());
         System.out.println("Бюджет: " + player.getMoney());
@@ -33,7 +37,10 @@ public class PlayerMove {
             switch (a) {
                 case 1:
                     player.setMoney(player.getMoney() - gameMap.getTax());
-                    bank += gameMap.getTax();
+                    bankMoney += gameMap.getTax();
+                    gameMap.setIsFree(false);
+                    OwnerCard ownerCard = searchCardService.lookForOwnCard(ownerCards, gameMap);
+                    player.getOwnerCards().add(ownerCard);
                     System.out.println("Вы купили " + gameMap.getName());
                     System.out.println("Ваш бюджет" + player.getMoney());
                 case 2:
