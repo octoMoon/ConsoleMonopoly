@@ -1,13 +1,14 @@
 package consoleMonopoly.service;
 
 import consoleMonopoly.exception.NotCardException;
-import consoleMonopoly.gameKit.GameMap;
+import consoleMonopoly.gameKit.GameMapPosition;
 import consoleMonopoly.gameKit.OwnerCard;
 import java.util.ArrayList;
 
-public class SearchCardService {
+public class SearchCardsService {
 
-    public OwnerCard lookForOwnCard(ArrayList<OwnerCard> ownerCards, GameMap gameMap) {
+    //Сопостовляет Поле-Карту
+    public OwnerCard lookForOwnCard(ArrayList<OwnerCard> ownerCards, GameMapPosition gameMap) {
         String name = gameMap.getName();
         for (OwnerCard ownerCard : ownerCards) {
             if (ownerCard.getCardName().equals(name)) {

@@ -3,37 +3,37 @@ package consoleMonopoly.gameKit;
 import consoleMonopoly.enums.Collor;
 import consoleMonopoly.enums.MapType;
 
-public class GameMap {
+public class GameMapPosition {
 
     private MapType type;
     private Collor collor;
-    private int tax;
+    private int price;
     private boolean isFree = true;
     private String name;
 
-    public GameMap(MapType type) {
+    public GameMapPosition(MapType type) {
         this.type = type;
     }
 
-    public GameMap(MapType type, int tax, String name) {
+    public GameMapPosition(MapType type, int price, String name) {
         this.type = type;
-        this.tax = tax;
+        this.price = price;
         this.name = name;
     }
 
-    public GameMap(MapType type, int tax, String name, Collor collor) {
+    public GameMapPosition(MapType type, int price, String name, Collor collor) {
         this.type = type;
         this.collor = collor;
-        this.tax = tax;
+        this.price = price;
         this.name = name;
     }
 
-    public int getTax() {
-        return tax;
+    public int getPrice() {
+        return price;
     }
 
-    public void setTax(int tax) {
-        this.tax = tax;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public MapType getType() {
@@ -51,7 +51,6 @@ public class GameMap {
     public void setCollor(Collor collor) {
         this.collor = collor;
     }
-
 
     public boolean isFree() {
         return isFree;

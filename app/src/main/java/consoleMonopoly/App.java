@@ -3,7 +3,7 @@ package consoleMonopoly;
 import static consoleMonopoly.enums.Collor.*;
 import consoleMonopoly.exception.NumberOfPlayersException;
 import consoleMonopoly.gameKit.Dice;
-import consoleMonopoly.gameKit.GameMap;
+import consoleMonopoly.gameKit.GameMapPosition;
 import static consoleMonopoly.enums.MapType.*;
 import consoleMonopoly.gameKit.OwnerCard;
 import consoleMonopoly.gameKit.Player;
@@ -21,7 +21,7 @@ public class App {
         int bankMoney;
         boolean isGameOver = false;
         Player[] players;
-        ArrayList<GameMap> gameMap;
+        ArrayList<GameMapPosition> gameMap;
         ArrayList<OwnerCard> ownerCardsPool;
 
         Dice dice = new Dice();
@@ -44,7 +44,7 @@ public class App {
 
         while (isGameOver == false) {
             for (int i = 0; i < players.length; i++) {
-                playerMenu.menuView(players[i], scanner, dice, random, gameMap.get(2));
+             //   playerMenu.menuView(players[i], scanner, dice, random, gameMap.get(2));
             }
         }
 

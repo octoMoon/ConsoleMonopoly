@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Player {
 
+    private int id;
     private String name;
     private int money = 1500;
     private int position;
@@ -12,6 +13,14 @@ public class Player {
     private ArrayList<OwnerCard> ownerCards;
 
     public Player() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPosition() {
