@@ -17,7 +17,7 @@ public class SearchServiceTest {
    public void testLookForOwnCard() {
         System.out.println("lookForOwnCard");
         ArrayList<OwnerCard> ownerCards;
-        OwnerCardCreator ownerCardCreator = new OwnerCardCreator();
+        OwnerCardsCreator ownerCardCreator = new OwnerCardsCreator();
         ownerCards = ownerCardCreator.create();
         GameMapPosition gameMap = new GameMapPosition(MapType.TAX, 0, "Горнолыжный курорт");
         SearchCardsService instance = new SearchCardsService();

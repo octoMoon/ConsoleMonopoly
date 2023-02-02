@@ -1,15 +1,15 @@
 package consoleMonopoly;
 
 import static consoleMonopoly.enums.Collor.*;
-import consoleMonopoly.exception.NumberOfPlayersException;
+import consoleMonopoly.gameKit.Bank;
 import consoleMonopoly.gameKit.Dice;
 import consoleMonopoly.gameKit.GameMapPosition;
-import static consoleMonopoly.enums.MapType.*;
 import consoleMonopoly.gameKit.OwnerCard;
 import consoleMonopoly.gameKit.Player;
-import consoleMonopoly.service.GameCreator;
-import consoleMonopoly.service.OwnerCardCreator;
+import consoleMonopoly.service.GameCardsCreator;
+import consoleMonopoly.service.OwnerCardsCreator;
 import consoleMonopoly.service.PlayerMove;
+import consoleMonopoly.service.PlayersCreator;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -17,36 +17,27 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args) {
-        int numberOfPlayers;
-        int bankMoney;
-        boolean isGameOver = false;
-        Player[] players;
-        ArrayList<GameMapPosition> gameMap;
-        ArrayList<OwnerCard> ownerCardsPool;
-
+        //*******CREATE_GAME******
+        Scanner scanner = new Scanner(System.in);
+        Bank bank = new Bank();
         Dice dice = new Dice();
         Random random = new Random();
-        Scanner scanner = new Scanner(System.in);
-        PlayerMove playerMenu = new PlayerMove();
-        GameCreator gameCreator = new GameCreator();
-        OwnerCardCreator ownerCardCreator = new OwnerCardCreator();
 
-        gameMap = gameCreator.createGameMap();
-        ownerCardsPool = ownerCardCreator.create();
+        PlayersCreator playersCreator = new PlayersCreator();
+        GameCardsCreator gameCardsCreator = new GameCardsCreator();
+        OwnerCardsCreator ownerCardsCreator = new OwnerCardsCreator();
+        ArrayList<GameMapPosition> gameMapPositions = gameCardsCreator.create();
+        ArrayList<OwnerCard> ownerCards = ownerCardsCreator.create();
+        PlayerMove playrMove = new PlayerMove();
+
+        int playersCount = playersCreator.playerCounter();
+        Player[] players = playersCreator.createPlayer(playersCount);
 
         //******GAME******
-        System.out.println(gameMap.get(1).getName());
-        numberOfPlayers = gameCreator.playerCounter();
-        if (numberOfPlayers > 6 || numberOfPlayers < 2) {
-            throw new NumberOfPlayersException("Не корректное количество игроков!");
-        }
-        players = gameCreator.createPlayer(numberOfPlayers);
-
-        while (isGameOver == false) {
+        while (true) {
             for (int i = 0; i < players.length; i++) {
-             //   playerMenu.menuView(players[i], scanner, dice, random, gameMap.get(2));
+                playrMove.move(dice, random, scanner, players[i], gameMapPositions, ownerCards, bank, players);
             }
         }
-
     }
 }

@@ -4,7 +4,7 @@ import static consoleMonopoly.enums.Collor.*;
 import consoleMonopoly.gameKit.OwnerCard;
 import java.util.ArrayList;
 
-public class OwnerCardCreator {
+public class OwnerCardsCreator {
 
     public ArrayList<OwnerCard> create() {
         ArrayList<OwnerCard> ownerCards = new ArrayList<>(28);

@@ -2,36 +2,13 @@ package consoleMonopoly.service;
 
 import static consoleMonopoly.enums.Collor.*;
 import static consoleMonopoly.enums.MapType.*;
+
 import consoleMonopoly.gameKit.GameMapPosition;
-import consoleMonopoly.gameKit.Player;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public class GameCreator {
 
-    int bank;
-
-    public int playerCounter() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Сколько будет игроков ? (Не больше 6!)");
-        return scanner.nextInt();
-    }
-
-    public Player[] createPlayer(int count) {
-        Player[] players = new Player[count];
-        Scanner scanner = new Scanner(System.in);
-
-        for (int i = 0; i < count; i++) {
-            players[i] = new Player();
-            System.out.println("Введите имя нового игрока, добавте бот и банкир в конце имени для определения ии и банкира (1 банкир, 1 бот!)");
-            players[i].setName(scanner.nextLine());
-            players[i].setId(i);
-        }
-
-        return players;
-    }
-
-    public ArrayList<GameMapPosition> createGameMap() {
+public class GameCardsCreator {
+      public ArrayList<GameMapPosition> create() {
         ArrayList<GameMapPosition> gameMap = new ArrayList<>(40);
         gameMap.add(new GameMapPosition(START));
         gameMap.add(new GameMapPosition(SITES, 60, "Старая дорога", BROWN));
@@ -78,4 +55,5 @@ public class GameCreator {
 
     }
 
+    
 }

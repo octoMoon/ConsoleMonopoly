@@ -1,15 +1,19 @@
 package consoleMonopoly.service;
 
+import consoleMonopoly.gameKit.Bank;
+import consoleMonopoly.gameKit.OwnerCard;
 import consoleMonopoly.gameKit.Player;
 import java.util.Scanner;
 
 public class AuctionService {
 
+    private static final int IT_IS_NULL = 99;
+
     //Количество вышедших из аукциона
-    public boolean boolView(boolean[] bools, int numOfPlayers) {
+    public boolean knockingOut(boolean[] playersInGame, int numOfPlayers) {
         int trues = 0;
-        for (int i = 0; i < bools.length; i++) {
-            if (bools[i] == true) {
+        for (int i = 0; i < playersInGame.length; i++) {
+            if (playersInGame[i] == true) {
                 trues += 1;
             }
         }
@@ -18,7 +22,7 @@ public class AuctionService {
 
     //id победителя аукциона
     public int falseIdView(boolean[] bools) {
-        int id = 99;
+        int id = IT_IS_NULL;
         for (int i = 0; i < bools.length; i++) {
             if (bools[i] == false) {
                 id = i;
@@ -29,6 +33,7 @@ public class AuctionService {
 
     //ход игрока
     public int step(Player player, Scanner scanner, int price) {
+        System.out.println(player.getName());
         System.out.println("Сейчас цена равна " + price);
         System.out.println("Введите новую ценy, ваш бюджет " + player.getMoney());
         System.out.println("0 если вы пасс");
@@ -36,28 +41,41 @@ public class AuctionService {
         return scn;
     }
 
-    public int[] auction(Player[] player, Scanner scanner) {
+    //Проводит аукцион
+    public void auction(Player[] player, Scanner scanner, Bank bank, OwnerCard ownerCard) {
+        System.out.println("Аукцион за лот: " + ownerCard.getCardName());
         int price = 0;
         boolean auctionOver = false;
         boolean[] bools = new boolean[player.length];
-        int[] is = new int[2];
+        int[] result = new int[2];
 
         while (auctionOver == false) {
-            auctionOver = boolView(bools, player.length);
 
             for (int i = 0; i < player.length; i++) {
                 int n = step(player[i], scanner, price);
-                if (n != 0) {
-                    price += n;
+                if (n > price) {
+                    price = n;
                 } else {
                     bools[i] = true;
                 }
-            }            
+                auctionOver = knockingOut(bools, player.length);
+            }
         }
-        
-        is[0] = falseIdView(bools);
-        is[1] = price;
-        return is;
+
+        System.out.println("Аукцион закончен !");
+        result[0] = price;
+        result[1] = falseIdView(bools);
+        System.out.println("Цена лота:" + result[0]);
+        System.out.println("Победитель: " + player[result[1]].getName());
+
+        finish(player[result[1]], result[0], ownerCard, bank);
+
+    }
+
+    public void finish(Player player, int price, OwnerCard ownerCard, Bank bank) {
+        player.setMoney(player.getMoney() - price);
+            player.getOwnerCards().add(ownerCard);
+            bank.setMoney(bank.getMoney() + price);
     }
 
 }

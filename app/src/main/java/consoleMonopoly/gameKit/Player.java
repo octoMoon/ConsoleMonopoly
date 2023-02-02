@@ -1,6 +1,7 @@
 package consoleMonopoly.gameKit;
 
 import java.util.ArrayList;
+import consoleMonopoly.enums.Collor;
 
 public class Player {
 
@@ -10,9 +11,15 @@ public class Player {
     private int position;
     private boolean isAi;
     private boolean isBanker;
-    private ArrayList<OwnerCard> ownerCards;
+    public ArrayList<OwnerCard> ownerCards;
 
     public Player() {
+    }
+
+    public Player(int id, String name) {
+        this.id = id;
+        this.name = name;
+        this.ownerCards = new ArrayList<OwnerCard>();
     }
 
     public int getId() {
@@ -38,7 +45,6 @@ public class Player {
     public void setOwnerCards(ArrayList<OwnerCard> ownerCards) {
         this.ownerCards = ownerCards;
     }
-        
 
     public String getName() {
         return name;
